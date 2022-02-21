@@ -1,13 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useSelector } from 'react-redux';
-import {AiOutlineHome, AiOutlineMessage} from 'react-icons/ai';
+import {AiOutlineMessage} from 'react-icons/ai';
 import {CgProfile} from 'react-icons/cg';
-import {FiSettings} from 'react-icons/fi';
 import {BiNews} from 'react-icons/bi';
 import styled, {css} from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { setVisibleComponent } from '../../features/ui';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const LeftSideBar = () => {
 
@@ -15,14 +14,23 @@ const LeftSideBar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const location = useLocation()
 
-    const handleClick = (e) => {
-        dispatch(setVisibleComponent(e.target.innerText));
-        e.target.innerText === 'News Feed' ? navigate('/') : navigate(`/${e.target.innerText.toLowerCase()}`);
-
+    const handleClick = (path) => {
+        path === 'News Feed' ? navigate('/') : navigate(`/${path.toLowerCase()}`);   
     }
 
-    const settingsArray = [[<CgProfile />, <h4>Profile</h4>], [<AiOutlineMessage />, <h4>Messages</h4>], [<BiNews />,  <h4>News Feed</h4>], [<FiSettings />, <h4>Settings</h4>]];
+    useEffect(() => {
+        if (location.pathname != '/') {
+            dispatch(setVisibleComponent(location.pathname.replace('/', '')))
+        } else {
+            dispatch(setVisibleComponent('News Feed'));
+        }
+     
+    }, [location.pathname])
+
+
+    const settingsArray = [[<CgProfile />, <h4>Profile</h4>], [<AiOutlineMessage />, <h4>Messages</h4>], [<BiNews />,  <h4>News Feed</h4>]];
 
   return (
 
@@ -31,11 +39,11 @@ const LeftSideBar = () => {
             <Photo src={user.photo} />
             <h4>{user.userName}</h4>
         </Profile>
-        <Settings onClick={handleClick}>
+        <Settings>
 
             {settingsArray.map((setting, index) => {
                 return (
-                    <SettingContainer isSelected={ui.visibleComponent == setting[1].props.children} key={index}>
+                    <SettingContainer onClick={() => handleClick(setting[1].props.children)} isSelected={ui.visibleComponent.toLowerCase() == setting[1].props.children.toLowerCase()} key={index}>
                         {setting[0]}
                         {setting[1]}
                     </SettingContainer>

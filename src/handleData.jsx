@@ -14,14 +14,22 @@ const HandleData = ({children}) => {
     const {user} = useSelector(state => state);
     const {ui} = useSelector(state => state);
 
+    const updateUserInfo = (user) => {
+      dispatch(setLoading(true));
+      if (user !== null) {
+        dispatch(setUser({email: user.email, userId: user.uid, isLoggedIn: true, userName: user.displayName, photo: user.photoURL}));
+      } else if (user === null) {
+        dispatch(logoutUser())
+      }
+      dispatch(setLoading(false))
+    }
+
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-        user && dispatch(setUser({email: user.email, userId: user.uid, isLoggedIn: true, userName: user.displayName, photo: user.photoURL}));
-        !user && dispatch(logoutUser());
-        console.log(user);
-        dispatch(setLoading(false))
+        onAuthStateChanged(auth, (user) => {  
+            updateUserInfo(user);
         })
     }, [])
+
 
 
 

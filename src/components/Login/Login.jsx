@@ -9,6 +9,7 @@ import { db } from '../../firebase/config';
 import {AiOutlineMail} from 'react-icons/ai';
 import {RiLockPasswordLine} from 'react-icons/ri';
 import {BsPerson} from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
     const [name, setName] = useState('');
@@ -26,6 +27,7 @@ const Login = () => {
       setErrorMessage('');
     }
     
+    const dispatch = useDispatch();
 
     const createUser = async (e) => {
         e.preventDefault();
@@ -35,7 +37,9 @@ const Login = () => {
           await updateProfile(user, {displayName: name, photoURL: 'https://firebasestorage.googleapis.com/v0/b/social-platform-1875f.appspot.com/o/blank-profile-picture-973460.png?alt=media&token=b150014f-d1c4-489c-823a-8897496e0f4d'});
           await setDoc(doc(db, 'users', user.uid), {
             name: user.displayName,
+            photo: 'https://firebasestorage.googleapis.com/v0/b/social-platform-1875f.appspot.com/o/blank-profile-picture-973460.png?alt=media&token=b150014f-d1c4-489c-823a-8897496e0f4d'
           })
+          dispatch(setUser({email: user.email, userId: user.uid, isLoggedIn: true, userName: user.displayName, photo: user.photoURL}));
         } catch(error) {
           switch(error.message) {
             case 'Firebase: Error (auth/email-already-in-use).':
@@ -57,8 +61,8 @@ const Login = () => {
     const loginUser = async (e) => {
         e.preventDefault();
         try {
-          const user = await signInWithEmailAndPassword(auth, email, password);
-          console.log(user);
+          await signInWithEmailAndPassword(auth, email, password);
+          console.log(auth.currentUser)
         } catch(error) {
           switch(error.message) {
             case 'Firebase: Error (auth/wrong-password).':

@@ -1,18 +1,35 @@
 import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { updateDoc, doc } from 'firebase/firestore';
+import { db } from '../../firebase/config';
+import { v4 as uuidv4 } from 'uuid';
 
-const AddComment = () => {
+const AddComment = ({postId, setOpenComments, comments}) => {
 
     const {user} = useSelector(state => state);
     const [comment, setComment] = useState('');
 
+    const clearField = () => {
+        setComment('');
+    }
+
+    const addComment = async () => {
+        if (comment.length < 10) return;
+        console.log(typeof comments)
+        const postRef = doc(db, "posts", postId);
+        await updateDoc(postRef, {
+            comments: [...comments, {user: user.userName, userId: user.userId, photo: user.photo, text: comment, timeStamp: new Date(), commentId: uuidv4()}]
+        });  
+        clearField();
+        setOpenComments(true);
+    }   
 
   return (
     <Container >
         <ProfilePicture src={user.photo} alt="" />
         <InputField value={comment} onChange={(e) => setComment(e.target.value)} placeholder='Comment on this post' type='text'/>
-        <PostButton>Comment</PostButton>
+        <PostButton onClick={addComment}>Comment</PostButton>
     </Container>
   )
 }
@@ -33,8 +50,8 @@ const Container = styled.div`
 `
 
 const ProfilePicture = styled.img`
-    width: 35px;
-    height: 35px;
+    width: 25px;
+    height: 25px;
     object-fit: cover;
     border-radius: 20px;
 `
@@ -54,8 +71,8 @@ const PostButton = styled.button`
     outline: none;
     border: none;
     color: white;
-    padding: 7px 1.3rem;
+    padding: 5px 1rem;
     border-radius: 5px;
-    font-size: 12px;
+    font-size: 10px;
     cursor: pointer;
 `

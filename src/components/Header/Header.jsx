@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Searchbar from './Searchbar';
+import { auth } from '../../firebase/config';
+import { useDispatch } from 'react-redux';
 
 
 
@@ -12,7 +14,7 @@ const Header = () => {
 
     const {user} = useSelector(state => state);
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
 
   return (
     <Container>
@@ -20,7 +22,7 @@ const Header = () => {
             <span onClick={() => navigate('/')}>Prime</span>
         </Logo>
         <Searchbar />
-        <ProfilePicture src={user.photo} />
+        <Signout onClick={() => {auth.signOut()}}>Sign out</Signout>
     </Container>
   )
 }
@@ -55,10 +57,18 @@ const Logo = styled.h1`
     }
 `
 
-const ProfilePicture = styled.img`
-    width: 35px;
-    height: 35px;
-    object-fit: cover;
-    border-radius: 20px;
+const Signout = styled.button`
+    background-color: ${({theme}) => theme.mainColor};
+    color: white;
+    padding: 5px 10px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
     cursor: pointer;
+
+    @media(max-width: 800px) {
+        font-size: 10px;
+        width: 100px;
+    }
 `

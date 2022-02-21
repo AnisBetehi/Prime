@@ -4,7 +4,7 @@ import {ImAttachment} from 'react-icons/im';
 import {BsFillImageFill} from 'react-icons/bs';
 import styled from 'styled-components';
 import useStorage from '../../Hooks/useStorage';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc} from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -13,22 +13,39 @@ const AddPost = () => {
     const {user} = useSelector(state => state);
     const [post, setPost] = useState('');
     const [selectedImg, setSelectedImg] = useState();
+    const [url, loading] = useStorage(selectedImg);
 
     const addPostToCollection = async () => {
-        if (post.length < 10) return;
-        await setDoc(doc(db, "posts", uuidv4()), {
-            text: post,
-            userId: user.userId,
-            userImg: user.photo,
-            userName: user.userName,
-            likes: [],
-            comment: [],
-            timeStamp: new Date(),
-          });
+        if (post.length < 10 && !url) return;
+        if (selectedImg) {
+            await setDoc(doc(db, "posts", uuidv4()), {
+                text: post,
+                userId: user.userId,
+                userImg: user.photo,
+                userName: user.userName,
+                likes: [],
+                comments: [],
+                timeStamp: new Date(),
+                imgUrl: url
+              });
+        } else {
+            await setDoc(doc(db, "posts", uuidv4()), {
+                text: post,
+                userId: user.userId,
+                userImg: user.photo,
+                userName: user.userName,
+                likes: [],
+                comments: [],
+                timeStamp: new Date()
+              });
+        }
           setPost('');
           setSelectedImg('');
     }
 
+    const cancelImgUpload = () => {
+        setSelectedImg('');
+    }
 
   return (
     
@@ -36,13 +53,13 @@ const AddPost = () => {
         <Container >
             <ProfilePicture src={user.photo} alt="" />
             <InputField value={post} onChange={(e) => setPost(e.target.value)} placeholder={`What's on your mind, ${user.userName}`} type='text'/>
-            <PostButton onClick={() => {addPostToCollection()}}><ImAttachment /> Post it!</PostButton>
+            <PostButton loading={loading} onClick={() => {addPostToCollection()}}><ImAttachment />{loading ? 'Loading' : ' Post it!'}</PostButton>
         </Container>
-        {!selectedImg ?
-        <InsertImg>
-            <label htmlFor='file'> <BsFillImageFill /> Attach image</label>
+        {!url ?
+        <InsertImg loading={loading}>
+            <label htmlFor='file'> <BsFillImageFill />{loading ? 'Loading' : 'Attach an image'}</label>
             <input id='file' accept="image/*" onChange={(e) => setSelectedImg(e.target.files[0])} style={{display: 'none'}} type="file" />
-        </InsertImg> : <RemoveImg onClick={() => setSelectedImg('')}><h4>Remove Image</h4></RemoveImg>}
+        </InsertImg> : <RemoveImg onClick={cancelImgUpload}><h4>Remove Image</h4></RemoveImg>}
     </OuterContainer>
   )
 }
@@ -81,10 +98,14 @@ const InputField = styled.input`
     padding-left: 1rem;
     font-size: 12px;
 
+    @media(max-width: 700px) {
+        flex: 0;
+    }
+
 `
 
 const PostButton = styled.button`
-    background-color: ${({theme}) => theme.mainColor};
+    background-color: ${({loading, theme}) => loading ? 'gray' : theme.mainColor};
     outline: none;
     border: none;
     color: white;
@@ -93,6 +114,13 @@ const PostButton = styled.button`
     font-weight: bold;
     font-size: 12px;
     cursor: pointer;
+    pointer-events: ${({loading}) => loading ? 'none' : 'all'};
+    margin-left: auto;
+
+    @media(max-width: 600px) {
+        font-size: 10px;
+        padding: 5px 10px;
+    }
 `
 
 const InsertImg = styled.div`
@@ -105,6 +133,7 @@ const InsertImg = styled.div`
     color: gray;
     background: white;
     cursor: pointer;
+    pointer-events: ${({loading}) => loading ? 'none' : 'all'};
     transform: translateY(-5px);
     border-radius: 0 0 10px 10px;
     transition: .5s ease;
@@ -117,7 +146,14 @@ const InsertImg = styled.div`
         gap: 10px;
         height: 100%;
         cursor: pointer;
+        pointer-events: ${({loading}) => loading ? 'none' : 'all'};
     }
+
+    svg {
+        display: ${({loading}) => loading ? 'none' : 'block'};
+    }
+
+
 `
 
 const RemoveImg = styled.div`

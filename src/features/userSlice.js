@@ -7,7 +7,9 @@ const userSlice = createSlice({
         userName: undefined,
         email: undefined,
         userId: undefined,
-        photo: undefined
+        photo: undefined,
+        aboutMe: undefined,
+        website: undefined
     },
     reducers: {
         setUser: (state, {payload}) => {
@@ -16,6 +18,7 @@ const userSlice = createSlice({
             state.userId = payload.userId;
             state.email = payload.email;
             state.photo = payload.photo;
+            state.description = payload.description;
         },
         logoutUser: (state) => {
             state.isLoggedIn = false;
@@ -23,11 +26,18 @@ const userSlice = createSlice({
             state.userId = undefined;
             state.email = undefined;
             state.photo = undefined;
+        },
+        changeProfilePhoto: (state, {payload}) => {
+            state.photo = payload;
+        },
+        updateCurrentUserProfile: (state ,{payload}) => {
+            state.website = payload.website;
+            state.aboutMe = payload.aboutMe;
         }
     }
 })
 
 
-export const {setUser, logoutUser} = userSlice.actions;
+export const {setUser, logoutUser, changeProfilePhoto, updateCurrentUserProfile} = userSlice.actions;
 
 export default userSlice.reducer;

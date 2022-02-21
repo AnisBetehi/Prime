@@ -1,18 +1,26 @@
 import {useState, useEffect} from 'react';
 import { storage } from '../firebase/config';
-import { ref, uploadBytes } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const useStorage = (file) => {
     const [url, setUrl] = useState('');
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        if (!file) return;
+        if (!file) {
+            setUrl('');
+            setLoading(false);
+            return
+        };
+        setLoading(true);
         const storageRef = ref(storage, file.name);
 
         uploadBytes(storageRef, file).then((snapshot) => {
-            console.log(snapshot);
-          });
+            getDownloadURL(snapshot.ref).then((url) => {
+                setUrl(url);
+                setLoading(false);
+            });
+          })
     }, [file])
     
 
@@ -21,3 +29,4 @@ const useStorage = (file) => {
 }
 
 export default useStorage;
+

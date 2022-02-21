@@ -5,7 +5,7 @@ import { useGetPosts } from '../../Hooks/useGetPosts';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPosts } from '../../features/posts';
 
-const Posts = () => {
+const Posts = ({userId}) => {
 
     const [posts, loading] = useGetPosts();
     const dispatch = useDispatch();
@@ -18,11 +18,15 @@ const Posts = () => {
 
   return (
     <Container>
-       {!loading && postsState?.map(post => {
+       {postsState.length > 0 && userId ? postsState?.filter(post => post.userId === userId).map(post => {
            return (
-               <Post key={post.postId} postId={post.postId} timestamp={post.timeStamp} userId={post.userId} likes={post.likes} userName={post.userName} userImg={post.userImg} userId={post.userId} img={post.imgUrl} text={post.text}/>
+               <Post key={post.postId} postId={post.postId} timestamp={post.timeStamp} userId={post.userId} likes={post.likes} comments={post.comments} userName={post.userName} userImg={post.userImg} userId={post.userId} img={post.imgUrl} text={post.text}/>
            )
-       })}
+       }) : postsState.length > 0 ? postsState?.map(post => {
+        return (
+            <Post key={post.postId} postId={post.postId} timestamp={post.timeStamp} userId={post.userId} likes={post.likes} comments={post.comments} userName={post.userName} userImg={post.userImg} userId={post.userId} img={post.imgUrl} text={post.text}/>
+        )
+       }): <h4>No posts yet</h4>}
     </Container>
   )
 }
