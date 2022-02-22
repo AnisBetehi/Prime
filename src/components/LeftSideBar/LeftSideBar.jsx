@@ -67,7 +67,7 @@ const Container = styled.aside`
     flex-direction: column;
     gap: 20px;
 
-    @media(max-width: 700px) {
+    @media(max-width: 900px) {
         display: none;
     }
 `
@@ -87,6 +87,10 @@ const Profile = styled.div`
 
     > h4:first-letter {
         text-transform: capitalize;
+    }
+
+    @media(max-width: 900px) {
+        display: none;
     }
 `
 

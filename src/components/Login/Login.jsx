@@ -1,15 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-import {createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, updateProfile} from 'firebase/auth';
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import Vector from '../../images/undraw_secure_files_re_6vdh.svg';
 import {auth} from '../../firebase/config'
-import { setUser, logoutUser } from '../../features/userSlice';
-import { setDoc, doc } from 'firebase/firestore';
+import { setUser } from '../../features/userSlice';
+import { setLoading } from '../../features/ui';
+import { setDoc, doc} from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import {AiOutlineMail} from 'react-icons/ai';
 import {RiLockPasswordLine} from 'react-icons/ri';
 import {BsPerson} from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [name, setName] = useState('');
@@ -18,6 +20,8 @@ const Login = () => {
     const [confirmPassword, setConfirmPassword] = useState(''); 
     const [errorMessage, setErrorMessage] = useState('');
     const [signIn, setSignIn] = useState(true);
+
+    const navigate = useNavigate();
 
     const clearFields = () => {
       setName('');
@@ -36,10 +40,12 @@ const Login = () => {
           const {user} = await createUserWithEmailAndPassword(auth, email, password);  
           await updateProfile(user, {displayName: name, photoURL: 'https://firebasestorage.googleapis.com/v0/b/social-platform-1875f.appspot.com/o/blank-profile-picture-973460.png?alt=media&token=b150014f-d1c4-489c-823a-8897496e0f4d'});
           await setDoc(doc(db, 'users', user.uid), {
-            name: user.displayName,
+            name: name,
             photo: 'https://firebasestorage.googleapis.com/v0/b/social-platform-1875f.appspot.com/o/blank-profile-picture-973460.png?alt=media&token=b150014f-d1c4-489c-823a-8897496e0f4d'
           })
-          dispatch(setUser({email: user.email, userId: user.uid, isLoggedIn: true, userName: user.displayName, photo: user.photoURL}));
+          dispatch(setUser({email: user.email, userId: user.uid, isLoggedIn: true, userName: name, photo: user.photoURL}));
+          dispatch(setLoading(false));
+          navigate('/');
         } catch(error) {
           switch(error.message) {
             case 'Firebase: Error (auth/email-already-in-use).':
@@ -62,7 +68,7 @@ const Login = () => {
         e.preventDefault();
         try {
           await signInWithEmailAndPassword(auth, email, password);
-          console.log(auth.currentUser)
+          navigate('/');
         } catch(error) {
           switch(error.message) {
             case 'Firebase: Error (auth/wrong-password).':
@@ -92,7 +98,7 @@ const Login = () => {
               {!signIn && 
                   <InputContainer>
                     <BsPerson />
-                    <input value={name} onChange={(e) => setName(e.target.value)} id='name' type="text" />
+                    <input className='name' value={name} onChange={(e) => setName(e.target.value)} id='name' type="text" />
                     <label htmlFor="name">Username</label>
                   </InputContainer>
               }
@@ -221,6 +227,10 @@ const InputContainer = styled.div`
   height: 40px;
   border: 1px solid rgba(0, 0, 0, .3);
   border-radius: 5px;
+
+  .name {
+    text-transform: capitalize;
+  }
 
   > label {
     position: absolute;

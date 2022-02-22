@@ -7,7 +7,7 @@ import { setPosts } from '../../features/posts';
 
 const Posts = ({userId}) => {
 
-    const [posts, loading] = useGetPosts();
+    const [posts] = useGetPosts();
     const dispatch = useDispatch();
     const {posts: postsState} = useSelector(state => state);
 
@@ -22,11 +22,11 @@ const Posts = ({userId}) => {
            return (
                <Post key={post.postId} postId={post.postId} timestamp={post.timeStamp} userId={post.userId} likes={post.likes} comments={post.comments} userName={post.userName} userImg={post.userImg} userId={post.userId} img={post.imgUrl} text={post.text}/>
            )
-       }) : postsState.length > 0 ? postsState?.map(post => {
+       }) : postsState.length > 0 && postsState?.map(post => {
         return (
             <Post key={post.postId} postId={post.postId} timestamp={post.timeStamp} userId={post.userId} likes={post.likes} comments={post.comments} userName={post.userName} userImg={post.userImg} userId={post.userId} img={post.imgUrl} text={post.text}/>
         )
-       }): <h4>No posts yet</h4>}
+       })}
     </Container>
   )
 }

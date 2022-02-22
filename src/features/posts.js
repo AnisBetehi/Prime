@@ -6,7 +6,7 @@ const PostsSlice = createSlice({
     initialState: [],
     reducers: {
         setPosts: (state, {payload}) => {
-            return state = payload;
+            return payload;
         },
         addPost: (state, {payload}) => {
             state.push(payload);

@@ -11,7 +11,7 @@ import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 
 const Post = ({likes, comments, postId, timestamp, userId, userImg, userName, text, img}) => {
-    const {user} = useSelector(state => state);
+    const {user, allUsers} = useSelector(state => state);
     const [openComments, setOpenComments] = useState(false);
     const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false);
 
@@ -43,7 +43,7 @@ const Post = ({likes, comments, postId, timestamp, userId, userImg, userName, te
   return (
     <Container>
         <Title>
-            <img onClick={() => navigate(`/users/${userId}`)} src={userImg} alt="" />
+            <img onClick={() => navigate(`/users/${userId}`)} src={allUsers.find(user => user.userId === userId).photo} alt="" />
             <div>
                 <h4 onClick={() => navigate(`/users/${userId}`)}>{userName}</h4>
                 <h6>{moment(timestamp.seconds * 1000).fromNow()}</h6>

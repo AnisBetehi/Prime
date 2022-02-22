@@ -1,5 +1,5 @@
 import { updateProfile } from 'firebase/auth';
-import { getDoc, updateDoc } from 'firebase/firestore';
+import { getDoc, updateDoc, setDoc } from 'firebase/firestore';
 import React, {useEffect, useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -15,7 +15,7 @@ import { updateCurrentUserProfile } from '../../features/userSlice';
 
 const PersonalProfile = () => {
 
-    const {user} = useSelector(state => state);
+    const {user, allUsers} = useSelector(state => state);
     const [selectedImg, setSelectedImg] = useState('');
     const [url, loading] = useStorage(selectedImg);
     const [openEditProfile, setOpenEditProfile] = useState(false);
@@ -29,16 +29,18 @@ const PersonalProfile = () => {
             photoURL: url
         })
         dispatch(changeProfilePhoto(url));
-        await updateDoc(doc(db, 'users', user.userId), {
+        await setDoc(doc(db, 'users', user.userId), {
             photo: url
-        })
+        }, {merge: true})
     }
 
+
     const getProfileInfo = async () => {
-        const profileRef = doc(db, 'users', user.userId);
-        const info = await getDoc(profileRef);
-        setWebsite(info.data().website || '');
-        setAboutMe(info.data().aboutMe || '')
+        const info = allUsers.filter(inf => inf.userId === user.userId);
+        if (info) {
+            setWebsite(info[0].website || '');
+            setAboutMe(info[0].aboutMe || '');
+        }   
     }
 
     const closeEdit = () => {
@@ -47,10 +49,10 @@ const PersonalProfile = () => {
 
     const updateProfileInfo = async (e) => {
         e.preventDefault();
-        await updateDoc(doc(db, 'users', user.userId), {
+        await setDoc(doc(db, 'users', user.userId), {
             website,
             aboutMe
-        })
+        }, {merge: true})
         dispatch(updateCurrentUserProfile({website, aboutMe}));
         closeEdit()
     }
@@ -59,21 +61,25 @@ const PersonalProfile = () => {
         getProfileInfo();
         if (url.length > 0) updateProfilePhoto(url);
         setSelectedImg('');
-    }, [url])
+    }, [url, allUsers])
     
     
   return (
     <Container>
         <ProfileTitle>     
-            <input id='file' accept="image/*" onChange={(e) => setSelectedImg(e.target.files[0])} style={{display: 'none'}} type="file" />      
+            <input id='file' accept="image/*" onChange={(e) => setSelectedImg(e.target.files[0])} style={{display: 'none'}} type="file" />  
+            {!loading ?  
             <UploadImg htmlFor='file' loading={loading}>
                 <div>
                     <img src={user.photo} alt="" />
                     <div className='overlay'>
-                        {loading ? 'Loading' : 'Change Picture'}
+                        Change Picture
                     </div>
                 </div>     
-            </UploadImg>         
+            </UploadImg>
+            :
+            <UploadingImg>Uploading image...</UploadingImg>
+            }         
             <div>
                 <h2>{user.userName}</h2>
                 {website && <div>
@@ -247,6 +253,18 @@ const UploadImg = styled.label`
     pointer-events: ${({loading}) => loading ? 'none' : 'all'};
 
 
+`
+
+const UploadingImg = styled.div`
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    background: rgba(0, 0, 0, .5);
+    color: white;
 `
 
 const MyPosts = styled.h4`

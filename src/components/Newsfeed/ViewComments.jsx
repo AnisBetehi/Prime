@@ -12,7 +12,7 @@ import { db } from '../../firebase/config';
 
 const ViewComments = ({comments, postId, setOpenComments}) => {
 
-    const {user} = useSelector(state => state);
+    const {user, allUsers} = useSelector(state => state);
     const [organizedComments, setOrganizedComments] = useState([]);
     const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false);
     const [removedCommentId, setRemovedCommentId] = useState('');
@@ -46,7 +46,7 @@ const ViewComments = ({comments, postId, setOpenComments}) => {
                     {organizedComments.map(comment => {
                         return (
                             <CommentRow myComment={comment.userId === user.userId} key={uuidv4()}>
-                                <img onClick={() => navigate(`/users/${comment.userId}`)} src={comment.photo} alt="" />
+                                <img onClick={() => navigate(`/users/${comment.userId}`)} src={allUsers.find(user => user.userId === comment.userId).photo} alt="" />
                                 <div>
                                     <div>
                                         <h6 onClick={() => navigate(`/users/${comment.userId}`)}>{comment.user}</h6>

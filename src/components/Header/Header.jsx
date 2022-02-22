@@ -1,27 +1,24 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Searchbar from './Searchbar';
 import { auth } from '../../firebase/config';
-import { useDispatch } from 'react-redux';
-
-
-
+import {AiOutlineMessage} from 'react-icons/ai';
+import {CgProfile} from 'react-icons/cg';
 
 
 const Header = () => {
 
-    const {user} = useSelector(state => state);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
   return (
     <Container>
         <Logo>
             <span onClick={() => navigate('/')}>Prime</span>
         </Logo>
-        <Searchbar />
+        <NavLinks>
+            <AiOutlineMessage onClick={() => navigate('/messages')} />
+            <CgProfile onClick={() => navigate('/profile')} />
+        </NavLinks>
         <Signout onClick={() => {auth.signOut()}}>Sign out</Signout>
     </Container>
   )
@@ -69,6 +66,22 @@ const Signout = styled.button`
 
     @media(max-width: 800px) {
         font-size: 10px;
+        padding-block: 7px;
         width: 100px;
+    }
+`
+
+const NavLinks = styled.nav`
+    display: flex;
+    gap: 15px;
+    
+    svg {
+        font-size: 25px;
+        cursor: pointer;
+        color: ${({theme}) => theme.mainColor};
+    }
+
+    @media(min-width: 900px) {
+        display: none;
     }
 `

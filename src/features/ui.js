@@ -5,7 +5,8 @@ const uiSlice = createSlice({
     name: 'ui',
     initialState: {
         loading: true,
-        visibleComponent: 'News Feed'
+        visibleComponent: 'News Feed',
+        newMessages: false
     },
     reducers: {
         setLoading: (state , {payload}) => {
@@ -14,11 +15,14 @@ const uiSlice = createSlice({
 
         setVisibleComponent: (state, {payload}) => {
             state.visibleComponent = payload;
+        },
+        setNewMessages: (state, {payload}) => {
+            state.newMessages = payload;
         }
     }
 })
 
 
-export const {setLoading, setVisibleComponent} = uiSlice.actions;
+export const {setLoading, setVisibleComponent, setNewMessages} = uiSlice.actions;
 
 export default uiSlice.reducer;

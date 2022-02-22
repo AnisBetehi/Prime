@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 const OthersProfile = () => {
 
-    const {user} = useSelector(state => state);
+    const {user, allUsers} = useSelector(state => state);
     const {id} = useParams();
     const [website, setWebsite] = useState('');
     const [aboutMe, setAboutMe] = useState('');
@@ -21,18 +21,19 @@ const OthersProfile = () => {
     const navigate = useNavigate();
     
     const getUserInfo = async () => {
-        const profileRef = doc(db, 'users', id);
-        const info = await getDoc(profileRef);
-        setWebsite(info.data().website || '');
-        setAboutMe(info.data().aboutMe || '')
-        setProfilePicture(info.data().photo);
-        setName(info.data().name)
-        console.log(info.data())
+        const info = allUsers.filter(user => user.userId === id);
+        if (info) {
+            setWebsite(info[0].website || '');
+            setAboutMe(info[0].aboutMe || '');
+            setProfilePicture(info[0].photo);
+            setName(info[0].name);
+        }   
+
     }
 
     useEffect(() => {
         getUserInfo();
-    }, [id])
+    }, [id, allUsers])
     
 
     if (user.userId === id) return <Navigate to='/profile' />;
@@ -56,7 +57,7 @@ const OthersProfile = () => {
             </About>
             }
         </div>
-        <Message onClick={() => navigate('/messages')}><AiOutlineMessage/> Message</Message>
+        <AiOutlineMessage className='message' onClick={() => navigate(`/messages/${id}`)}/>
     </ProfileTitle>
     <MyPosts>Posts</MyPosts>
     <Posts userId={id} />
@@ -123,7 +124,17 @@ const ProfileTitle = styled.div`
         }
     }
 
-    @media(max-width: 500px) {
+   .message {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        padding: 5px 10px;
+        font-size: 40px;
+        color:  ${({theme}) => theme.mainColor};
+        cursor: pointer;
+   }
+
+    @media(max-width: 700px) {
         flex-direction: column;
         align-items: center;
 
@@ -162,22 +173,6 @@ const About = styled.div`
     }
 `
 
-const Message = styled.button`
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    padding: 5px 10px;
-    font-size: 12px;
-    background-color: ${({theme}) => theme.mainColor};
-    outline: none;
-    border: none;
-    color: white;;
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-`
 
 
 

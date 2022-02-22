@@ -6,6 +6,8 @@ import Newsfeed from '../Newsfeed/Newsfeed';
 import PersonalProfile from '../Profile/PersonalProfile';
 import { useSelector } from 'react-redux';
 import OthersProfile from '../Profile/OthersProfile';
+import Messages from '../Messages/Messages';
+import Chatbox from '../Messages/Chatbox';
 
 const Layout = () => {
 
@@ -18,7 +20,8 @@ const Layout = () => {
             <Route path='/settings' element={<h1>Hey</h1>} />
             <Route path='/' element={<Newsfeed />} />
             <Route path='/profile' element={<PersonalProfile />} />
-            <Route path='/messages' element={<h1>messages</h1>} />
+            <Route path='/messages' element={<Messages />} />
+            <Route path='/messages/:id' element={<Chatbox />} />
             <Route path='/users/:id' element={<OthersProfile />} />
         </Routes>
     </Container>

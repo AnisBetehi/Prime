@@ -15,7 +15,7 @@ const AddComment = ({postId, setOpenComments, comments}) => {
     }
 
     const addComment = async () => {
-        if (comment.length < 10) return;
+        if (comment.length === 0) return;
         console.log(typeof comments)
         const postRef = doc(db, "posts", postId);
         await updateDoc(postRef, {
