@@ -12,6 +12,7 @@ const GlobalStyles = createGlobalStyle`
 
     body {
         background-color: ${({theme}) => theme.mainBg};
+        overflow-x: hidden;
     }
 
     *, input, select, option, button {
