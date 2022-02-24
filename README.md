@@ -1,2 +1,2 @@
 # Prime
-[View live website](https://www.primme.netlify.app)
+[View live website](https:/primme.netlify.app)
