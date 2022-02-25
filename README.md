@@ -29,7 +29,7 @@
 - Email Authentication (Sign up, Sign in, Sign out).
   - when you first open the app, you will be greeted by a login page, you can either sign in or sign up if you haven't.
 
-  - once you create and account you will be able to use the app.
+  - once you create an account you will be able to use the app.
 
 - Posting (includes images) and deleting posts.
   - posts are saved in the backend and can be seen by everyone.
