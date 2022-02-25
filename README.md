@@ -59,7 +59,7 @@ and you will be able to see their information and their posts.
 
 - Messaging other users.
 
-  - each user has a unique chatbox with every user on the app that is saved in the database.
+  - each user has a unique chatbox with every other user on the app that is saved in the database.
 
   - you can message users by going into their profile and pressing the message icon, then you can find all your messages in the messages tab.
 
