@@ -1,5 +1,5 @@
 # Prime
-### [**Prime**](https://primme.netlify.app) is social platform where users can posts their thoughts, discuss their interests and passions.
+### [**Prime**](https://primme.netlify.app) is social platform that's built with ReactJS, it is where users can posts their thoughts, discuss their interests and passions.
 
 
 ## How to run the app
@@ -64,6 +64,8 @@ and you will be able to see their information and their posts.
   - you can message users by going into their profile and pressing the message icon, then you can find all your messages in the messages tab.
 
 - Live reloading when new posts, comments and likes are added / removed.
+
+- The app is completely responsive with all devices.
 
 
 
