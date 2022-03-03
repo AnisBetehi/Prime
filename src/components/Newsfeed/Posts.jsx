@@ -41,4 +41,5 @@ const Container = styled.section`
     display: flex;
     flex-direction: column;
     gap: 40px;
+    padding-bottom: 3rem;
 `

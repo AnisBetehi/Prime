@@ -252,6 +252,7 @@ const InputContainer = styled.div`
     flex: 1;
     font-size: 12px;
     padding-left: 5px;
+    background-color: transparent;
   }
 
   > svg {
