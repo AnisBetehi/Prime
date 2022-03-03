@@ -6,6 +6,7 @@ import HandleData from "./handleData";
 import Header from "./components/Header/Header";
 import Layout from "./components/Layout/Layout";
 import ScrollToTop from "./components/ScrollToTop";
+import ScrollButton from "./components/ScrollButton";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <ScrollToTop />
         <Header />
         <Layout /> 
+        <ScrollButton />
       </HandleData>
     </ThemeProvider>
     </>

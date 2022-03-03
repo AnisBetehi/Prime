@@ -10,6 +10,10 @@ const GlobalStyles = createGlobalStyle`
     }
 
 
+    html {
+        scroll-behavior: smooth;
+    }
+
     body {
         background-color: ${({theme}) => theme.mainBg};
         overflow-x: hidden;
