@@ -168,7 +168,6 @@ const OuterContainer = styled.section`
 `
 
 const LoginContainer = styled.div`
-    min-height: 75vh;
     border-radius: 10px;
     width: 100%;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
