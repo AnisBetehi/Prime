@@ -4,20 +4,17 @@ import LeftSideBar from '../LeftSideBar/LeftSideBar';
 import { Routes, Route } from 'react-router-dom';
 import Newsfeed from '../Newsfeed/Newsfeed';
 import PersonalProfile from '../Profile/PersonalProfile';
-import { useSelector } from 'react-redux';
 import OthersProfile from '../Profile/OthersProfile';
 import Messages from '../Messages/Messages';
 import Chatbox from '../Messages/Chatbox';
 
 const Layout = () => {
 
-  const {user} = useSelector(state => state);
 
   return (
     <Container>
         <LeftSideBar />
         <Routes>
-            <Route path='/settings' element={<h1>Hey</h1>} />
             <Route path='/' element={<Newsfeed />} />
             <Route path='/profile' element={<PersonalProfile />} />
             <Route path='/messages' element={<Messages />} />
