@@ -39,9 +39,9 @@ export default AddComment;
 
 const Container = styled.div`
     width: 100%;
-    min-height: 30px;
+    min-height: 1.8em;
     background: white;
-    border-radius: 10px;
+    border-radius: .4em;
     display: flex;
     align-items: center;
     position: relative;
@@ -50,10 +50,10 @@ const Container = styled.div`
 `
 
 const ProfilePicture = styled.img`
-    width: 25px;
-    height: 25px;
+    width: 1.6em;
+    height: 1.6em;
     object-fit: cover;
-    border-radius: 20px;
+    border-radius: 1.1em;
 `
 
 const InputField = styled.input`
@@ -61,8 +61,8 @@ const InputField = styled.input`
     outline: none;
     border: none;
     flex: 1;
-    padding-left: 1rem;
-    font-size: 12px;
+    padding-left: 1em;
+    font-size: .7em;
 
 `
 
@@ -71,8 +71,8 @@ const PostButton = styled.button`
     outline: none;
     border: none;
     color: white;
-    padding: 5px 1rem;
-    border-radius: 5px;
-    font-size: 10px;
+    padding: .4em 1em;
+    border-radius: .4em;
+    font-size: .7em;
     cursor: pointer;
 `

@@ -69,55 +69,76 @@ export default OthersProfile
 
 const Container = styled.section`
     min-height: 100vh;
-    width: 700px;
+    width: max(50vw, 600px);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: .4em;
+    font-size: 1rem;
+
+    @media(min-width: 1700px) {
+        font-size: 1.3rem;
+    }
+
+    @media(min-width: 2000px) {
+        font-size: 1.9rem;
+    }
+
+    @media(min-width: 2800px) {
+        font-size: 2.7rem;
+    }
+
+    @media(min-width: 4000px) {
+        font-size: 3rem;
+    }
+
+    @media(min-width: 5000px) {
+        font-size: 3.7rem;
+    }
 
 `
 
 const ProfileTitle = styled.div`
     display: flex;
-    gap: 20px;
+    gap: 1.1em;
     background-color: white;
-    padding: 1rem;
-    border-radius: 10px;
+    padding: 1em;
+    border-radius: .6em;
     position: relative;
     overflow: hidden;
 
     img {
-        width: 200px;
-        height: 200px;
+        width: 12.8em;
+        height: 12.8em;
         object-fit: cover;
     }
 
     > div {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: .4em;
         max-width: 50%;
 
         h2 {
-            font-size: 16px;
+            font-size: 1em;
             color: ${({theme}) => theme.mainColor};
         }
 
         > div:first-of-type {
             display: flex;
-            gap: 5px;
+            gap: .4em;
             align-items: center;
             
 
             a {
                 text-decoration: none;
-                font-size: 12px;
+                font-size: .8em;
                 font-weight: bolder;
                 color: ${({theme}) => theme.mainColor};
             }
 
             svg {
                 color: ${({theme}) => theme.mainColor};
-                font-size: 12px;
+                font-size: .8em;
             }
 
 
@@ -126,10 +147,10 @@ const ProfileTitle = styled.div`
 
    .message {
         position: absolute;
-        top: 5px;
-        right: 5px;
+        top: .4em;
+        right: .4em;
         padding: 5px 10px;
-        font-size: 40px;
+        font-size: 2.6em;
         color:  ${({theme}) => theme.mainColor};
         cursor: pointer;
    }
@@ -152,24 +173,24 @@ const ProfileTitle = styled.div`
 
 const MyPosts = styled.h4`
     background: white;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 13px;
+    padding: .4em;
+    border-radius: .4em;
+    font-size: .85em;
     text-align: center;
 `
 
 const About = styled.div`
     display: flex
     flex-direction: column;
-    margin-top: 10px;
+    margin-top: .4em;
 
     h5 {
-        font-size: 13px;
+        font-size: .85em;
     }
 
     p {
-        font-size: 12px;
-        margin-top: 5px;
+        font-size: .8em;
+        margin-top: .4em;
     }
 `
 

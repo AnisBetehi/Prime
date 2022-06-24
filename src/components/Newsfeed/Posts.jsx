@@ -37,9 +37,9 @@ export default Posts;
 const Container = styled.section`
     width: 100%;
     min-height: 40vh;
-    border-radius: 10px;
+    border-radius: .4em;
     display: flex;
     flex-direction: column;
-    gap: 40px;
-    padding-bottom: 3rem;
+    gap: 1.6em;
+    padding-bottom: 3em;
 `

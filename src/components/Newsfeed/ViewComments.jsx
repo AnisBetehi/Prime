@@ -101,20 +101,25 @@ const Container = styled.div`
 `
 
 const CommentsContainer = styled.div`
-    width: min(600px, 100%);
-    height: 70vh;
+    width: max(40vw, 600px);
+    height: max(40vw, 650px);
     background: white;
-    padding: 1rem 1.5rem;
+    padding: 1em 1.5em;
     padding-top: 0;
     position: relative;
     overflow: auto;
     border-radius: 10px;
+
+    @media(max-width: 800px) {
+        width: 100%;
+        height: 80%;
+    }
 `
 
 const Title = styled.div`
     width: 100%;
     display: flex;
-    height: 50px;
+    height: 3.1em;
     align-items: center;
     justify-content: space-between;
     position: sticky;
@@ -123,11 +128,11 @@ const Title = styled.div`
     z-index: 10;
 
     h5 {
-        font-size: 15px;
+        font-size: .95em;
     }
 
     svg {
-        font-size: 20px;
+        font-size: 1.1em;
         cursor: pointer;
     }
 `
@@ -135,19 +140,19 @@ const Title = styled.div`
 const InnerCommentsContainer = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    margin-top: 50px;
+    gap: 1.8em;
+    margin-top: 3.1em;
 `
 const CommentRow = styled.div`
     display: flex;
-    min-height: 40px;
-    gap: 10px;
+    min-height: 3.3em;
+    gap: .6em;
     width: 100%;
 
     > img {
-        width: 30px;
-        height: 30px;
-        border-radius: 20px;
+        width: 1.8em;
+        height: 1.8em;
+        border-radius: 1.1em;
         object-filt: cover;
         cursor: pointer;
     }
@@ -157,34 +162,34 @@ const CommentRow = styled.div`
 
         > div {
             display: flex;
-            gap: 5px;
+            gap: .4em;
             align-items: center;
 
             h5 {
-                font-size: 10px;
+                font-size: .6em;
                 color: gray;
             }
         }
 
         h6 {
-            font-size: 12px;
+            font-size: .8em;
             color: ${({theme}) => theme.mainColor};
             cursor: pointer;
         }
 
         p {
-            font-size: 12px;
+            font-size: .8em;
             width: max-content;
             background-color: ${({theme, myComment}) => myComment ? theme.mainColor : theme.mainBg};
             color: ${({theme, myComment}) => myComment ? 'white' : theme.accent};
-            border-radius: 10px;
-            padding: 5px 10px;
-            margin-top: 5px;
+            border-radius: .6em;
+            padding: .4em .7em;
+            margin-top: .4em;
         }
     }
 
     .remove-comment {
-        font-size: 16px;
+        font-size: 1em;
         cursor: pointer;
         margin-left: auto;
     }
@@ -196,7 +201,7 @@ const NoCommentsYet = styled.h5`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 12px;
+    font-size: .8em;
 `
 
 const ConfirmDelete = styled.div`
@@ -208,28 +213,28 @@ const ConfirmDelete = styled.div`
     z-index: 30;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: .6em;
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, .5);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(.4em);
     opacity: ${({visible}) => visible ? '1' : '0'};
     pointer-events: ${({visible}) => visible ? 'all' : 'none'};
     transition: .2s ease;
 
     > h4 {
-        font-size: 20px;
+        font-size: 1.1em;
         color: white;
     }
 
     > div {
         display: flex;
-        gap: 30px;
+        gap: 1.8em;
 
         h6 {
-            font-size: 12px;
-            padding: 5px 10px;
-            border-radius: 5px;
+            font-size: .8em;
+            padding: .4em .7em;
+            border-radius: .4em;
             background: ${({theme}) => theme.mainColor};
             color: white;
             font-weight: 200;

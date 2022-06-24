@@ -129,12 +129,37 @@ export default Chatbox;
 const Container = styled.section`
     max-height: 70vh;
     background: white;
-    width: 700px;
+    width: 50vw;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: .6em;
     display: flex;
-    padding-bottom: .5rem;
+    padding-bottom: .5em;
+    font-size: 1rem;
+
+    @media(max-width: 900px) {
+        display: none;
+    }
+
+    @media(min-width: 1700px) {
+        font-size: 1.3rem;
+    }
+
+    @media(min-width: 2000px) {
+        font-size: 1.9rem;
+    }
+
+    @media(min-width: 2800px) {
+        font-size: 2.7rem;
+    }
+
+    @media(min-width: 4000px) {
+        font-size: 3rem;
+    }
+
+    @media(min-width: 5000px) {
+        font-size: 3.7rem;
+    }
    
 `
 
@@ -143,11 +168,11 @@ const MessagesContainer = styled.div`
     overflow: auto;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.1em;
     scrollbar-width: thin;
 
     ::-webkit-scrollbar {
-    width: 7px;
+    width: .5em;
     }
 
     /* Track */
@@ -155,7 +180,7 @@ const MessagesContainer = styled.div`
     /* Handle */
     ::-webkit-scrollbar-thumb {
     background: #888;
-    border-radius: 5px;
+    border-radius: .4em;
     }
 
     /* Handle on hover */
@@ -166,12 +191,12 @@ const MessagesContainer = styled.div`
 
 const MessageRow = styled.div`
     display: flex;
-    padding-inline: 1rem;
+    padding-inline: 1em;
     flex-direction: ${({byMe}) => byMe ? 'row-reverse' : 'row'};
     width: 80%;
     align-self: ${({byMe}) => byMe ? 'flex-end' : 'flex-start'};
     align-items: center;
-    gap: 10px;
+    gap: .6em;
 
     @media(max-width: 1000px) {
         width: 100%;
@@ -179,25 +204,25 @@ const MessageRow = styled.div`
 `
 
 const ProfilePic = styled.img`
-    width: 35px;
-    height: 35px;
-    border-radius: 20px;
+    width: 2em;
+    height: 2em;
+    border-radius: 1.1em;
     object-fit: cover;
 `
 
 
 
 const MessageContent = styled.p`
-    font-size: 12px;
+    font-size: .75em;
     background-color: ${({theme, byMe}) => byMe ? theme.mainColor : '#dee3e3'};
     color: ${({byMe}) => byMe ? 'white' : 'black'};
-    padding: 5px 10px;
-    border-radius: 5px;
+    padding: .6em .8em;
+    border-radius: .4em;
 
 `
 
 const MessageAt = styled.h5`
-    font-size: 10px;
+    font-size: .6em;
     color: gray;
 
     @media(max-width: 1000px) {
@@ -208,16 +233,16 @@ const MessageAt = styled.h5`
 const MessageTitle = styled.div`
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: .4em;
     background: white;
-    border-bottom: .1px solid rgba(0, 0, 0, .1);
-    padding: .5rem 1rem;
+    border-bottom: .05em solid rgba(0, 0, 0, .1);
+    padding: .5em 1em;
     cursor: pointer;
 
     img {
-        width: 40px;
-        height: 40px;
-        border-radius: 20px;
+        width: 2.4em;
+        height: 2.4em;
+        border-radius: 1.1em;
         object-fit: cover;
     }
 
@@ -230,16 +255,16 @@ const AddMessage = styled.form`
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: .6em;
 `
 
 const MessageField = styled.input`
     border: 1px solid rgba(0, 0, 0, .1);
     outline: none;
-    border-radius: 10px;
-    padding: 5px 15px;
+    border-radius: .6em;
+    padding: .4em .95em;
     width: 85%;
-    font-size: 12px;
+    font-size: .8em;
 `
 
 const AddMessageButton = styled.input`
@@ -247,16 +272,16 @@ const AddMessageButton = styled.input`
     border: none;
     color: white;
     background-color: ${({theme}) => theme.mainColor};
-    padding: 5px 15px;
-    border-radius: 12px;
-    font-size: 12px;
+    padding: .4em .95em;
+    border-radius: .8em;
+    font-size: .8em;
     cursor: pointer;
 `
 
 const CantReply = styled.h3`
-    font-size: 13px;
+    font-size: .85em;
     text-align: center;
-    padding-block: .3rem;
+    padding-block: .3em;
     color:  white;
     font-weight: lighter;
     background: crimson;

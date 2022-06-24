@@ -36,15 +36,36 @@ const Container = styled.header`
     position: sticky;
     top: 0;
     padding-inline: 5vw;
-    padding-block: 1rem;
-    border-bottom: 1px solid rgba(0, 0, 0, .1);
-    gap: 20px;
+    padding-block: 1em;
+    border-bottom: .05em solid rgba(0, 0, 0, .1);
+    gap: 1em;
     z-index: 1000;
+    font-size: 1rem;
+
+    @media(min-width: 1700px) {
+        font-size: 1.3rem;
+    }
+
+    @media(min-width: 2000px) {
+        font-size: 1.9rem;
+    }
+
+    @media(min-width: 2800px) {
+        font-size: 2.7rem;
+    }
+
+    @media(min-width: 4000px) {
+        font-size: 3rem;
+    }
+
+    @media(min-width: 5000px) {
+        font-size: 4rem;
+    }
 
 `
 
 const Logo = styled.h1`
-    font-size: 20px;
+    font-size: 1.3em;
     color: ${({theme}) => theme.mainColor};
     user-select: none;
     flex: 1;
@@ -57,11 +78,11 @@ const Logo = styled.h1`
 const Signout = styled.button`
     background-color: ${({theme}) => theme.mainColor};
     color: white;
-    padding: 5px 10px;
+    padding: .4em 1em;
     outline: none;
     border: none;
-    border-radius: 5px;
-    font-size: 12px;
+    border-radius: .4em;
+    font-size: .75em;
     cursor: pointer;
 
     @media(max-width: 800px) {

@@ -79,15 +79,15 @@ export default Post;
 const Container = styled.div`
     width: 100%;
     min-height: 50px;
-    padding: 1rem;
+    padding: 1em;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 1.9em;
     background: white;
-    border-radius: 5px;
+    border-radius: .4em;
 
     > h5 {
-        font-size: 11px;
+        font-size: .75em;
         cursor: pointer;
         color: ${({theme}) => theme.mainColor};
         user-select: none;
@@ -98,32 +98,32 @@ const Title = styled.div`
 
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: .4em;
 
     > img {
-        width: 35px;
-        height: 35px;
-        border-radius: 20px;
+        width: 2.3em;
+        height: 2.3em;
+        border-radius: 1.1em;
         object-fit: cover;
         cursor: pointer;
     }
 
     > div {
         > h4 {
-            font-size: 14px;
+            font-size: .85em;
             color: ${({theme}) => theme.mainColor};
             cursor: pointer;
         }
 
         > h6 {
             font-weight: 100;
-            font-size: 10px;
+            font-size: .6em;
         }
     }
 
     .remove-post {
         justify-self: end;
-        font-size: 20px;
+        font-size: 1.1em;
         margin-left: auto;
         cursor: pointer;
         color: gray;
@@ -134,18 +134,18 @@ const Title = styled.div`
 const PostBody = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.1em;
 
 `
 
 const PostText = styled.p`
-    font-size: 12px;
+    font-size: .75em;
     font-weight: 500;
 `
 
 const PostPhoto = styled.img`
     width: 100%;
-    height: 400px;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
 
     @media(max-width: 700px) {
@@ -156,18 +156,18 @@ const PostPhoto = styled.img`
 const Likes = styled.div`
     display: flex;
     align-items: center;
-    gap: 5px;
-    transform: translateY(10px);
+    gap: .4em;
+    transform: translateY(.4em);
 
 
     svg, h4 {
         color: gray;
-        font-size: 14px;
+        font-size: .85em;
         user-select: none;
     }
 
     svg {
-        font-size: 20px;
+        font-size: 1.2em;
         cursor: pointer;
     }
 
@@ -186,28 +186,28 @@ const ConfirmDelete = styled.div`
     z-index: 400;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: .4em;
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, .5);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(.4em);
     opacity: ${({visible}) => visible ? '1' : '0'};
     pointer-events: ${({visible}) => visible ? 'all' : 'none'};
     transition: .2s ease;
 
     > h4 {
-        font-size: 20px;
+        font-size: 1.1em;
         color: white;
     }
 
     > div {
         display: flex;
-        gap: 30px;
+        gap: 1.2em;
 
         h6 {
-            font-size: 12px;
-            padding: 5px 10px;
-            border-radius: 5px;
+            font-size: .8em;
+            padding: .4em .9em;
+            border-radius: .4em;
             background: ${({theme}) => theme.mainColor};
             color: white;
             font-weight: 200;

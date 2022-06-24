@@ -68,13 +68,42 @@ export default Messages;
 
 const Container = styled.section`
     min-height: 100vh;
-    width: 700px;
+    width: max(50vw, 600px);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: .6em;
+    font-size: 1rem;
 
     > h3 {
-        font-size: 14px;
+        font-size: .9em;
+    }
+
+    @media(max-width: 900px) {
+        width: 100%;
+    }
+
+    @media(max-width: 900px) {
+        display: none;
+    }
+
+    @media(min-width: 1700px) {
+        font-size: 1.3rem;
+    }
+
+    @media(min-width: 2000px) {
+        font-size: 1.9rem;
+    }
+
+    @media(min-width: 2800px) {
+        font-size: 2.7rem;
+    }
+
+    @media(min-width: 4000px) {
+        font-size: 3rem;
+    }
+
+    @media(min-width: 5000px) {
+        font-size: 3.7rem;
     }
 `
 
@@ -82,15 +111,15 @@ const ChatRow = styled.div`
 
     cursor: pointer;
     display: flex;
-    gap: 10px;
+    gap: .6em;
     background: white;
-    padding: .5rem 1rem;
-    border-radius: 10px;
+    padding: .5em 1em;
+    border-radius: .6em;
 
     img {
-        width: 40px;
-        height: 40px;
-        border-radius: 20px;
+        width: 2.3em;
+        height: 2.3em;
+        border-radius: 1.1em;
         object-fit: cover;
 
     }

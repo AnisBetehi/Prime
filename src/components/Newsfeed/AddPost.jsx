@@ -72,22 +72,22 @@ const OuterContainer = styled.div`
 
 const Container = styled.div`
     width: 100%;
-    min-height: 50px;
+    min-height: 3.1em;
     background: white;
-    border-radius: 10px;
+    border-radius: .4em;
     display: flex;
     align-items: center;
     position: relative;
-    padding-inline: 1rem;
+    padding-inline: 1em;
     z-index: 10;
 
 `
 
 const ProfilePicture = styled.img`
-    width: 35px;
-    height: 35px;
+    width: 2em;
+    height: 2em;
     object-fit: cover;
-    border-radius: 20px;
+    border-radius: 1.1em;
 `
 
 const InputField = styled.input`
@@ -95,8 +95,8 @@ const InputField = styled.input`
     outline: none;
     border: none;
     flex: 1;
-    padding-left: 1rem;
-    font-size: 12px;
+    padding-left: 1em;
+    font-size: .7em;
 
     @media(max-width: 700px) {
         flex: 0;
@@ -109,10 +109,10 @@ const PostButton = styled.button`
     outline: none;
     border: none;
     color: white;
-    padding: 7px 1.3rem;
-    border-radius: 10px;
+    padding: .35em 1em;
+    border-radius: .4em;
     font-weight: bold;
-    font-size: 12px;
+    font-size: .7em;
     cursor: pointer;
     pointer-events: ${({loading}) => loading ? 'none' : 'all'};
     margin-left: auto;
@@ -126,24 +126,24 @@ const PostButton = styled.button`
 const InsertImg = styled.div`
     width: 100%;
     display: flex;
-    padding-block: .5rem;
+    padding-block: .5em;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: .4em;
     color: gray;
     background: white;
     cursor: pointer;
     pointer-events: ${({loading}) => loading ? 'none' : 'all'};
     transform: translateY(-5px);
-    border-radius: 0 0 10px 10px;
+    border-radius: 0 0 .6em .6em;
     transition: .5s ease;
     z-index: 1;
 
     label {
-        font-size: 12px;
+        font-size: .75em;
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: .6em;
         height: 100%;
         cursor: pointer;
         pointer-events: ${({loading}) => loading ? 'none' : 'all'};
@@ -162,13 +162,13 @@ const RemoveImg = styled.div`
     justify-content: center;
     align-items: center;
     background: white;
-    padding-block: 10px;
+    padding-block: .6em;
     transform: translateY(-5px);
-    border-radius: 0 0 10px 10px;
+    border-radius: 0 0 .6em .6em;
     cursor: pointer;
 
     h4 {
         color: ${({theme}) => theme.mainColor};
-        font-size: 12px;
+        font-size: .75em;
     }
 `

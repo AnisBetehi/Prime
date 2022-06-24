@@ -30,9 +30,29 @@ export default Layout;
 const Container = styled.section`
     width: 100vw;
     min-height: 100vh;
-    padding-block: 1rem;
-    padding-inline: 2rem;
+    padding-block: 1em;
+    padding-inline: 1em;
     display: flex;
     justify-content: center;
-    gap: 3rem;
+    gap: 3em;
+
+    @media(min-width: 1700px) {
+        font-size: 1.3rem;
+    }
+
+    @media(min-width: 2000px) {
+        font-size: 1.9rem;
+    }
+
+    @media(min-width: 2800px) {
+        font-size: 2.7rem;
+    }
+
+    @media(min-width: 4000px) {
+        font-size: 3rem;
+    }
+
+    @media(min-width: 5000px) {
+        font-size: 4rem;
+    }
 `

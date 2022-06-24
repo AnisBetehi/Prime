@@ -122,49 +122,74 @@ export default PersonalProfile;
 
 const Container = styled.section`
     min-height: 100vh;
-    width: 700px;
+    width: max(50vw, 600px);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: .4em;
+    font-size: 1rem;
+
+    @media(max-width: 900px) {
+        width: 100%;
+    }
+
+    @media(min-width: 1700px) {
+        font-size: 1.3rem;
+    }
+
+    @media(min-width: 2000px) {
+        font-size: 1.9rem;
+    }
+
+    @media(min-width: 2800px) {
+        font-size: 2.7rem;
+    }
+
+    @media(min-width: 4000px) {
+        font-size: 3rem;
+    }
+
+    @media(min-width: 5000px) {
+        font-size: 3.7rem;
+    }
 
 `
 
 const ProfileTitle = styled.div`
     display: flex;
-    gap: 20px;
+    gap: 1.3em;
     background-color: white;
-    padding: 1rem;
-    border-radius: 10px;
+    padding: 1em;
+    border-radius: .6em;
     position: relative;
-    overflow: hidden;
+    min-height: 16em;
 
     > div:not(:last-child) {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: .6em;
         max-width: 50%;
 
         h2 {
-            font-size: 16px;
+            font-size: .9em;
             color: ${({theme}) => theme.mainColor};
         }
 
         > div:first-of-type {
             display: flex;
-            gap: 5px;
+            gap: .4em;
             align-items: center;
             
 
             a {
                 text-decoration: none;
-                font-size: 12px;
+                font-size: .75em;
                 font-weight: bolder;
                 color: ${({theme}) => theme.mainColor};
             }
 
             svg {
                 color: ${({theme}) => theme.mainColor};
-                font-size: 12px;
+                font-size: .75em;
             }
 
 
@@ -172,12 +197,12 @@ const ProfileTitle = styled.div`
     }
 
     .edit-profile {
-        font-size: 20px;
+        font-size: 1.5em;
         cursor: pointer;
         color: ${({theme}) => theme.mainColor};
         position: absolute;
-        top: 20px;
-        right: 20px;
+        top: 1em;
+        right: 1em;
     }
 
     @media(max-width: 500px) {
@@ -199,23 +224,23 @@ const ProfileTitle = styled.div`
 const About = styled.div`
     display: flex
     flex-direction: column;
-    margin-top: 10px;
+    margin-top: .6em;
 
     h5 {
-        font-size: 13px;
+        font-size: .85em;
     }
 
     p {
-        font-size: 12px;
-        margin-top: 5px;
+        font-size: .75em;
+        margin-top: .4em;
     }
 `
 
 const UploadImg = styled.label`
 
     div {
-        width: 200px;
-        height: 200px;
+        width: 12.8em;
+        height: 12.8em;
         position: relative;
         img {
             width: 100%;
@@ -229,7 +254,7 @@ const UploadImg = styled.label`
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 14px;
+            font-size: .9em;
             background-color: rgba(0, 0, 0, .5);
             color: white;
             font-weight: bolder;
@@ -237,7 +262,7 @@ const UploadImg = styled.label`
             position: absolute;
             pointer-events: none;
             cursor: pointer;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(.4em);
             top: 0;
             left: 0;
             transition: .2s ease;
@@ -256,12 +281,12 @@ const UploadImg = styled.label`
 `
 
 const UploadingImg = styled.div`
-    width: 200px;
-    height: 200px;
+    width: 12.8em;
+    height: 12.8em;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 14px;
+    font-size: .9em;
     font-weight: bold;
     background: rgba(0, 0, 0, .5);
     color: white;
@@ -269,9 +294,9 @@ const UploadingImg = styled.div`
 
 const MyPosts = styled.h4`
     background: white;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 13px;
+    padding: .6em;
+    border-radius: .4em;
+    font-size: .8em;
     text-align: center;
 `
 
@@ -284,7 +309,7 @@ const EditProfile = styled.div`
     bottom: 0;
     background: rgba(255, 255, 255, .8);
     backdrop-filter: blur(10px);
-    padding: 1rem 2em;
+    padding: 1em 2em;
     transition: .2s ease;
     opacity: ${({visible}) => visible ? '1' : '0'};
     pointer-events: ${({visible}) => visible ? 'all' : 'none'};
@@ -292,32 +317,32 @@ const EditProfile = styled.div`
     > form {
         display: flex;
         flex-direction: column;
-        margin-top: 5px;
-        gap: 5px;
+        margin-top: .4em;
+        gap: .4em;
 
         > div {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: .4em;
 
             > label {
-                font-size: 12px;
+                font-size: .8em;
                 font-weight: bold;
             }
 
             > input {
-                width: 200px;
-                height: 30px;
+                width: 35%;
+                height: 2.8em;
             }
 
             > input, textarea {
-                padding: .5rem 1rem;
+                padding: .5em 1em;
                 outline: none;
-                border: .3px solid rgba(0, 0, 0, .2);
-                border-radius: 5px;
-                box-shadow: 0px 0px 20px rgba(0, 0, 0, .1);
+                border: .05em solid rgba(0, 0, 0, .2);
+                border-radius: .4em;
+                box-shadow: 0px 0px 1.1em rgba(0, 0, 0, .1);
                 resize: none;
-                font-size: 12px;
+                font-size: .8em;
             }
         }
 
@@ -325,13 +350,14 @@ const EditProfile = styled.div`
             outline: none;
             border: none;
             color: white;
-            padding: 5px 15px;
+            padding: .4em .95em;
             background-color: ${({theme}) => theme.mainColor};
-            border-radius: 5px;
+            border-radius: .4em;
             cursor: pointer;
-            max-width: 90px;
+            max-width: 6.5em;
             align-self: flex-end;
-            margin-top: 10px;
+            margin-top: .6em;
+            font-size: .75em;
         }
     }
 `
@@ -342,12 +368,12 @@ const EditTitle = styled.div`
     justify-content: space-between;
 
     > h5 {
-        font-size: 16px;
+        font-size: 1em;
         color: ${({theme}) => theme.mainColor};
     }
     > svg {
         cursor: pointer;
-        font-size: 20px;
+        font-size: 1.15em;
         user-select: none;
     }
 

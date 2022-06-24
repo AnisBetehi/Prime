@@ -61,28 +61,50 @@ export default LeftSideBar;
 
 
 const Container = styled.aside`
-    width: 300px;
-    border-radius: 10px;
+    width: max(20%, 250px);
+    border-radius: .6em;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    font-size: 1rem;
 
     @media(max-width: 900px) {
         display: none;
     }
+
+    @media(min-width: 1700px) {
+        font-size: 1.3rem;
+    }
+
+    @media(min-width: 2000px) {
+        font-size: 1.9rem;
+    }
+
+    @media(min-width: 2800px) {
+        font-size: 2.7rem;
+    }
+
+    @media(min-width: 4000px) {
+        font-size: 3rem;
+    }
+
+    @media(min-width: 5000px) {
+        font-size: 3.7rem;
+    }
+
 `
 
 const Profile = styled.div`
     display: flex;
-    padding-left: 2rem;
-    height: 100px;
-    border-radius: 10px;
-    gap: 10px;
+    padding-left: 2em;
+    min-height: 6vw;
+    border-radius: .6em;
+    gap: .6em;
     align-items: center;
     background: white;
 
     > h4 {
-        font-size: 14px;
+        font-size: .9em;
     }
 
     > h4:first-letter {
@@ -95,9 +117,9 @@ const Profile = styled.div`
 `
 
 const Photo = styled.img`
-    width: 35px;
-    height: 35px;
-    border-radius: 20px;
+    width: 2.4em;
+    height: 2.4em;
+    border-radius: 1em;
     object-fit: cover;
 `
 
@@ -106,40 +128,40 @@ const Settings = styled.div`
     flex-direction: column;
     align-items: center;
     background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+    border-radius: .6em;
+    box-shadow: 0 0 .35em rgba(0, 0, 0, .1);
 
     > div:not(:last-child) {
-            border-bottom: 1px solid #dfe2e6;   
+            border-bottom: .1em solid #dfe2e6;   
     }
 
 `
 
 const SettingContainer = styled.div`
     width: 100%;
-    padding-left: 2rem;
+    padding-left: 2em;
     display: flex;
     align-items: center;
-    gap: 10px;
-    height: 55px;
+    gap: .6em;
+    height: 3.45em;
     cursor: pointer;
     transition: .2s ease;
 
     > svg {
         color: gray;
-        font-size: 22px;
+        font-size: 1.3em;
         user-select: none;
     }
 
     > h4 {
-        font-size: 12px;
+        font-size: .75em;
         color: ${({theme}) => theme.accent};
         user-select: none;
     }
 
     ${({isSelected}) => isSelected && css`
         background: ${({theme}) => theme.mainBg};
-        border-left: 4px solid ${({theme}) => theme.mainColor};
+        border-left: .27em solid ${({theme}) => theme.mainColor};
             
         > svg, > h4 {
             color: ${({theme}) => theme.mainColor};

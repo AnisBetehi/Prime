@@ -147,11 +147,12 @@ const BodyBackground = styled.section`
 
 const OuterContainer = styled.section`
   position: fixed;
-  width: min(350px, 100%);
+  width: clamp(350px, 23vw, 100%);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 10px;
+  border-radius: .6em;
+  font-size: 1rem;
 
   &::after {
     content: '';
@@ -162,24 +163,41 @@ const OuterContainer = styled.section`
     width: 105%;
     background-color: rgba(255, 255, 255, .8);
     height: 90%;
-    border-radius: 10px;
+    border-radius: .6em;
     z-index: -1;
+  }
+
+  @media(min-width: 1800px) {
+    font-size: 1.4rem;
+  }
+
+  @media(min-width: 2100px) {
+    font-size: 1.9rem;
+  }
+
+  @media(min-width: 2800px) {
+    font-size: 2.8rem;
+  }
+
+  @media(min-width: 4400px) {
+    font-size: 3.45rem;
   }
 `
 
 const LoginContainer = styled.div`
-    border-radius: 10px;
+    border-radius: .6em;
     width: 100%;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    min-height: 30vw;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px .4em 1.1em;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-block: 3rem;
+    padding-block: 3em;
     background-color: white;
 
     > h5 {
-      margin-top: 15px;
-      font-size: 12px;
+      margin-top: .9em;
+      font-size: .7em;
       color: ${({theme}) => theme.mainColor};
       cursor: pointer;
     }
@@ -187,14 +205,14 @@ const LoginContainer = styled.div`
 `
 
 const LoginImg = styled.img`
-  width: 250px;
+  width: 70%;
 `
 
 const Error = styled.h4`
-  min-height: 30px;
+  min-height: 2em;
   text-align: center;
   margin-top: 20px;
-  font-size: 13px;
+  font-size: .75em;
   color: crimson;
 `
 
@@ -202,7 +220,7 @@ const LoginForm = styled.form`
   width: 80%;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 2em;
 
 
   input[type="submit"] {
@@ -210,7 +228,8 @@ const LoginForm = styled.form`
     border: none;
     background: ${({theme}) => theme.mainColor};
     color: white;
-    padding-block: .5rem;
+    padding-block: .5em;
+    font-size: .75em;
     border-radius: 15px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     cursor: pointer;
@@ -223,7 +242,7 @@ const InputContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  height: 40px;
+  height: 2.2em;
   border: 1px solid rgba(0, 0, 0, .3);
   border-radius: 5px;
 
@@ -233,11 +252,11 @@ const InputContainer = styled.div`
 
   > label {
     position: absolute;
-    font-size: 11px;
+    font-size: .65em;
     top: 0;
-    left: 10px;
+    left: .6em;
     transform: translateY(-50%);
-    padding-inline: 6px;
+    padding-inline: .3em;
     transition: .3s ease;
     color: ${({theme}) => theme.mainColor};
     font-weight: bolder;
@@ -249,14 +268,14 @@ const InputContainer = styled.div`
     outline: none;
     height: 100%;
     flex: 1;
-    font-size: 12px;
-    padding-left: 5px;
+    font-size: .65em;
+    padding-left: .5em;
     background-color: transparent;
   }
 
   > svg {
-    font-size: 17px;
-    margin-left: 10px;
+    font-size: 1em;
+    margin-left: .6em;
     color: ${({theme}) => theme.mainColor};
   }
 `
