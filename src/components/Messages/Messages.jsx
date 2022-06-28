@@ -82,10 +82,6 @@ const Container = styled.section`
         width: 100%;
     }
 
-    @media(max-width: 900px) {
-        display: none;
-    }
-
     @media(min-width: 1700px) {
         font-size: 1.3rem;
     }

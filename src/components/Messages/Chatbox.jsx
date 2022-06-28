@@ -138,7 +138,7 @@ const Container = styled.section`
     font-size: 1rem;
 
     @media(max-width: 900px) {
-        display: none;
+        width: 100%;
     }
 
     @media(min-width: 1700px) {
